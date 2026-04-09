@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>catsumka | Основатель VoidTime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0704;
+            --card: #14100c;
+            --accent: #ff8800;
+            --accent-dark: #ff5500;
+            --text: #f8f8f8;
+            --text-secondary: #b3b3b3;
+            --border: #2a2219;
+            --glow: rgba(255, 136, 0, 0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .viewer-counter {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 136, 0, 0.12);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 14.5px;
+            font-weight: 700;
+            box-shadow: 0 0 20px var(--glow);
+            z-index: 100;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            width: 128px;
+            height: 128px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 58px;
+            font-weight: 900;
+            color: #000;
+            box-shadow: 0 0 60px var(--glow);
+            transition: transform 0.4s ease;
+        }
+
+        .logo:hover { transform: rotate(8deg) scale(1.05); }
+
+        .header-info h1 {
+            font-size: 46px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .header-info .subtitle {
+            font-size: 21px;
+            color: var(--accent);
+        }
+
+        .experience-badge {
+            background: rgba(255,136,0,0.15);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 9px 26px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.85fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .main-content { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(255, 136, 0, 0.1);
+            transform: translateY(-8px);
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        .about-text {
+            font-size: 17.5px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        .highlight { color: var(--accent); font-weight: 600; }
+
+        .tag-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 32px 0;
+        }
+
+        .tag-button {
+            background: rgba(255, 136, 0, 0.08);
+            border: 1px solid rgba(255, 136, 0, 0.4);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .tag-button:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255,136,0,0.08), rgba(20,16,12,0.95));
+            border: 1px solid rgba(255,136,0,0.4);
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+            margin: 30px 0 40px 0;
+        }
+
+        .project-card h3 {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 28px;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: white;
+            font-size: 19px;
+            font-weight: 700;
+            padding: 20px 48px;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 12px 35px rgba(88, 101, 242, 0.45);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.15);
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(88, 101, 242, 0.6);
+        }
+
+        .discord-btn i {
+            font-size: 28px;
+            transition: transform 0.5s ease;
+        }
+
+        .discord-btn:hover i {
+            transform: scale(1.25) rotate(15deg);
+        }
+
+        .discord-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 50%;
+            height: 300%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .discord-btn:hover::after {
+            left: 150%;
+        }
+
+        .btn-server { background: linear-gradient(135deg, #5865F2, #7289DA); }
+        .btn-personal { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); }
+
+        footer {
+            text-align: center;
+            margin-top: 90px;
+            color: #555;
+            font-size: 14.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="viewer-counter">
+            <i class="fas fa-eye"></i> 
+            Просмотров: <span id="viewerCount">15784</span>
+        </div>
+
+        <header>
+            <div class="logo-box">
+                <div class="logo">CS</div>
+                <div class="header-info">
+                    <h1>catsumka</h1>
+                    <div class="subtitle">Основатель Minecraft сервера VoidTime</div>
+                    <div class="experience-badge">5 ЛЕТ В ТЕХНИЧЕСКОЙ СФЕРЕ</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+
+            <!-- Левая колонка -->
+            <div class="card">
+                <h2>Обо мне</h2>
+                <p class="about-text">
+                    Привет! Я — <span class="highlight">catsumka</span>.<br><br>
+                    Уже более 5 лет занимаюсь технической частью Minecraft. 
+                    Являюсь основателем и владельцем проекта <span class="highlight">VoidTime</span>.
+                </p>
+
+                <div class="tag-buttons">
+                    <div class="tag-button">Server Owner</div>
+                    <div class="tag-button">Plugin Dev</div>
+                    <div class="tag-button">Technical Admin</div>
+                    <div class="tag-button">VoidTime</div>
+                </div>
+            </div>
+
+            <!-- Правая колонка -->
+            <div class="card">
+                <h2>Мой проект — VoidTime</h2>
+                
+                <div class="project-card">
+                    <h3>VoidTime</h3>
+                    <p>Качественный Minecraft сервер с продуманной технической частью и стабильной работой.</p>
+                    
+                    <a href="https://discord.gg/твой_инвайт" target="_blank" class="discord-btn btn-server">
+                        <i class="fab fa-discord"></i>
+                        Присоединиться к VoidTime
+                    </a>
+                </div>
+
+                <div class="contact-section">
+                    <h2 style="margin-bottom: 25px;">Связаться со мной</h2>
+                    <a href="https://discord.com/users/твой_discord_id" target="_blank" class="discord-btn btn-personal">
+                        <i class="fab fa-discord"></i>
+                        Написать мне в Discord
+                    </a>
+                    <p style="margin-top: 20px; color: var(--text-secondary); font-size: 15.5px;">
+                        Самый быстрый способ связи
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            © 2026 catsumka • Основатель Minecraft сервера VoidTime
+        </footer>
+
+    </div>
+
+    <script>
+        // Реалистичный счётчик просмотров без localStorage (исправлено)
+        let views = 15784;
+        const viewerEl = document.getElementById('viewerCount');
+
+        // Начальный прирост при загрузке страницы
+        function initCounter() {
+            views += Math.floor(Math.random() * 11) + 5; // +5 до +15
+            viewerEl.textContent = views.toLocaleString('ru-RU');
+        }
+
+        // Постепенное увеличение каждые 5–9 секунд
+        function liveCounter() {
+            views += Math.floor(Math.random() * 3) + 1; // +1 до +3
+            viewerEl.textContent = views.toLocaleString('ru-RU');
+        }
+
+        // Запуск
+        window.addEventListener('load', () => {
+            initCounter();
+            setInterval(liveCounter, 6200); // каждые ~6.2 секунды
+        });
+    </script>
+
+</body>
+</html>
